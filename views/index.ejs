@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Joke Capstone project</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>😂 Custom Joke Generator</h1>
+
+      <form action="/" method="get">
+        <div class="form-group">
+          <label for="category">Choose a category</label>
+          <select name="category" id="category">
+            <option value="Any"<%= category==="Any" ? "selected" : "" %>>Any</option>
+            <option value="Misc" <%= category==="Misc" ? "selected" : "" %>>Misc</option>
+            <option value="Programming" <%= category==="Programming" ? "selected" : "" %>>Programming</option>
+            <option value="Dark" <%= category==="Dark" ? "selected" : "" %>>Dark</option>
+            <option value="Pun" <%= category==="Pun" ? "selected" : "" %>>Pun</option>
+            <option value="Spooky" <%= category==="Spooky" ? "selected" : "" %>>Spooky</option>
+            <option value="Christmas" <%= category==="Christmas" ? "selected" : "" %>>Christmas</option>
+          </select>
+        </div>
+        <button type="submit">Get New Joke</button>
+      </form>
+
+   <%     if(locals.error){ %>
+        <div class="error-box">
+            <%= error %>
+        </div>
+   <%   } %>
+
+      <div class="joke-box">
+      <%  if(locals.joke && !locals.error){ %>
+            <p class="category-tag">Category: <strong>
+                <%= joke.category %>
+            </strong></p>
+            <%   if(joke.type==="single"){ %>
+            <p class="joke-text"><strong>Joke:</strong><%= joke.joke %></p>
+     <%   }else{ %>
+            <p class="setup-text"><strong>Setup:</strong><%= joke.setup %></p>
+            <p class="delivery-text"><strong>Deliver:</strong><%= joke.delivery %></p>
+     <%   } %>
+     <%   }else if(!locals.error){ %>
+            <p class="placeholder-text">Select a category above and click <strong>"Get New Joke"</strong>!</p>
+     <%   }  %>
+      </div>
+
+    </div>
+  </body>
+</html
